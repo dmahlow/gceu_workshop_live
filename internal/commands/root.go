@@ -10,5 +10,6 @@ func AddCommands(rootCmd *cobra.Command) {
 		NewClickCommand(),
 		NewTypeCommand(),
 		NewMoveCommand(),
+		NewScreenshotCommand(),
 	)
 }
