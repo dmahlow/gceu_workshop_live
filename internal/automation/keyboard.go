@@ -18,7 +18,20 @@ func PressKey(key string) error {
 
 // PressKeyCombo presses a key combination (e.g., "ctrl", "c")
 func PressKeyCombo(keys ...string) error {
-	robotgo.KeyTap(keys[len(keys)-1], keys[:len(keys)-1]...)
+	if len(keys) == 0 {
+		return nil
+	}
+	if len(keys) == 1 {
+		robotgo.KeyTap(keys[0])
+		return nil
+	}
+
+	// Convert []string to []interface{} for robotgo.KeyTap
+	modifiers := make([]interface{}, len(keys)-1)
+	for i, key := range keys[:len(keys)-1] {
+		modifiers[i] = key
+	}
+	robotgo.KeyTap(keys[len(keys)-1], modifiers...)
 	return nil
 }
 
