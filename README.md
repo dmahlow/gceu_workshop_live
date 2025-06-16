@@ -1,6 +1,6 @@
 # Desktop Automation CLI
 
-Command-line tool for desktop automation tasks using robotgo.
+Command-line tool for desktop automation using robotgo.
 
 ## Installation
 
@@ -16,45 +16,47 @@ cd desktop-automation
 task build
 ```
 
-## Usage
+## Commands
 
-### Basic Commands
+### Move Mouse
 
-Move mouse cursor:
 ```bash
-desktop-automation move 100 200
+# Instant movement
+desktop-automation move 800 600
+
+# Smooth movement with default 1 second duration
+desktop-automation move --smooth 800 600
+
+# Smooth movement with custom duration
+desktop-automation move --smooth --duration 5.0 800 600
 ```
 
-Click at coordinates:
+### Click
+
 ```bash
 desktop-automation click 100 200
 ```
 
-Type text:
+### Type Text
+
 ```bash
+# Type text instantly
 desktop-automation type "Hello World"
+
+# Type with delay between characters
+desktop-automation type --delay 50 "Slow typing"
 ```
-
-Interactive terminal UI:
-```bash
-desktop-automation tui
-```
-
-### Available Commands
-
-- `move [x] [y]` - Move mouse to coordinates
-- `click [x] [y]` - Click at coordinates
-- `type [text]` - Type text at cursor position
-- `tui` - Launch interactive terminal interface
 
 ## Requirements
 
-- Go 1.21+
-- Platform-specific dependencies for robotgo (see robotgo documentation)
+- Go 1.23+
+- Platform-specific dependencies for robotgo
+
+### macOS
+
+Requires accessibility permissions. Grant access in System Preferences > Security & Privacy > Privacy > Accessibility.
 
 ## Development
-
-Use Task for development tasks:
 
 ```bash
 task build    # Build binary
@@ -62,4 +64,5 @@ task run      # Build and run
 task clean    # Clean artifacts
 task deps     # Download dependencies
 task test     # Run tests
+task install  # Install to GOPATH/bin
 ```
