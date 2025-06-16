@@ -36,6 +36,4 @@ vendor/
 ehthumbs.db
 Thumbs.db
 
-# Application specific
-desktop-automation
 *.log
