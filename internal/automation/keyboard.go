@@ -55,3 +55,29 @@ func TypeWithDelay(text string, delay int) error {
 	}
 	return nil
 }
+
+// TypeString types the specified text using robotgo.TypeStr with safety checks
+func TypeString(text string) error {
+	// Safety check for empty strings
+	if text == "" {
+		return nil
+	}
+	robotgo.TypeStr(text)
+	return nil
+}
+
+// TypeStringWithDelay types text with a delay between characters using robotgo.TypeStr
+func TypeStringWithDelay(text string, delayMs int) error {
+	// Safety check for empty strings
+	if text == "" {
+		return nil
+	}
+
+	for _, char := range text {
+		robotgo.TypeStr(string(char))
+		if delayMs > 0 {
+			robotgo.MilliSleep(delayMs)
+		}
+	}
+	return nil
+}
